@@ -1,0 +1,23 @@
+# Dossiers de build
+cmake-build-*/
+build/
+out/
+
+# Fichiers générés par CLion / CMake
+CMakeFiles/
+CMakeCache.txt
+Makefile
+*.o
+*.obj
+*.exe
+*.a
+*.so
+*.dll
+
+# Fichiers d’environnement JetBrains
+.idea/
+
+# Fichiers temporaires
+*.log
+*.tmp
+*.swp
