@@ -20,4 +20,6 @@ typedef struct s_list{
 typedef struct s_adjacent_list {
     int size;
     t_list *list;
-};
+}adjacent_list;
+
+t_cell* create_cell(int summit, int probability);
