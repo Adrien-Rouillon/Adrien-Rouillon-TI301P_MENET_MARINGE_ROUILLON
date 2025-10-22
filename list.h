@@ -23,3 +23,4 @@ typedef struct s_adjacent_list {
 }adjacent_list;
 
 t_cell* create_cell(int summit, int probability);
+void add_cell(t_list *mylist, int summit , int probability);
