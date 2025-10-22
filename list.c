@@ -26,7 +26,7 @@ t_cell create_cell(int summit, int probability) {
 
 
 void ajout_cell(t_list *mylist, int summit , int probability){
-    t_cell * new = cree_cell(summit,probability);
+    t_cell * new = create_cell(summit,probability);
     new->next = mylist->head;
     mylist->head = new;
 }
@@ -36,10 +36,10 @@ t_list* create_empty_list(){
 
 void display_list(t_list *list) {
     t_cell *cell = list->head;
-    printf("Liste pour le somet 1: [head @] ->");
-    while (cell != NULL) {
-        printf("(%d, %d) ", cell->summit, cell->probability);
+    printf("Liste pour le sommet 1: [head @] ->");
+    while (cell->next != NULL) {
+        printf("(%p, %d)@-> ", cell->summit, cell->probability);
         cell = cell->next;
     }
-
+    printf("(%p, %d) ", cell->summit, cell->probability);
 }
