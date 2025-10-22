@@ -11,5 +11,15 @@ t_cell create_cell(int summit, int probability) {
     cell.summit = summit;
     cell.probability = probability;
     cell.next = NULL;
+    return cell;
 }
 
+void display_list(t_list *list) {
+    t_cell *cell = list->head;
+    printf("Liste pour le somet 1: [head @] ->");
+    while (cell != NULL) {
+        printf("(%d, %d) ", cell->summit, cell->probability);
+        cell = cell->next;
+    }
+
+}
