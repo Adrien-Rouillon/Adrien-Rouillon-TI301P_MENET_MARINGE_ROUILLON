@@ -14,6 +14,10 @@ t_cell create_cell(int summit, int probability) {
     return cell;
 }
 
+t_list* create_empty_list(){
+    t_list* list;
+}
+
 void display_list(t_list *list) {
     t_cell *cell = list->head;
     printf("Liste pour le somet 1: [head @] ->");
