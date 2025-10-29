@@ -20,7 +20,7 @@ void add_cell(t_list *mylist, int summit , int probability){
     mylist->head = new;
 }
 
-/*
+/* laquelle fonctionne ?
 t_list* create_empty_list(){
     t_list* list;
 }
