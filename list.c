@@ -19,9 +19,17 @@ void add_cell(t_list *mylist, int summit , int probability){
     new->next = mylist->head;
     mylist->head = new;
 }
+
+/*
 t_list* create_empty_list(){
     t_list* list;
 }
+t_list create_empty_list() {
+    t_list list;
+    list.head = NULL;
+    return list;
+}
+*/
 
 void display_list(t_list *list) {
     t_cell *cell = list->head;
