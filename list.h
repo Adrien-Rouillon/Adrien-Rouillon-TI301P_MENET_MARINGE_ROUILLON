@@ -8,10 +8,10 @@
 #endif //LIST_H
 
 typedef struct s_cell {
-    int* summit;
-    int probability;
+    int summit;
+    float probability;
     struct s_cell *next;
-}t_cell;
+} t_cell;
 
 typedef struct s_list{
     t_cell *head;
@@ -20,10 +20,18 @@ typedef struct s_list{
 typedef struct s_adjacent_list {
     int size;
     t_list *list;
-}adjacent_list;
+} t_adjacent_list;
 
-t_cell* create_cell(int summit, int probability);
+t_cell *create_cell(int summit, float probability);
 
-t_list* create_empty_list();
+t_list create_empty_list();
 
-void add_cell(t_list *mylist, int summit , int probability);
+void add_cell(t_list *mylist, int summit , float probability);
+
+void display_list(t_list *list);
+
+t_adjacent_list create_adj_list(int size);
+
+void display_adj_list(t_adjacent_list list);
+
+t_adjacent_list readGraph (const char *filename);
