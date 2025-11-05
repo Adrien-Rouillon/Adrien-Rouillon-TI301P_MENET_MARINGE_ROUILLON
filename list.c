@@ -26,7 +26,7 @@ void display_list(t_list *list) {
     t_cell *cell = list->head;
     printf("[head @] ->");
     while (cell != NULL) {
-        printf("(%d, %f) ", cell->summit, cell->probability);
+        printf("(%d, %.2f) ", cell->summit, cell->probability);
         cell = cell->next;
     }
 }
@@ -44,7 +44,7 @@ t_adjacent_list create_adj_list(int size) {
 void display_adj_list(t_adjacent_list list) {
     if (list.size == 0) return;
     for (int i = 0; i < list.size; i++) {
-        printf("Liste pour le sommet %d: ", i);
+        printf("Liste pour le sommet %d: ", i+1);
         display_list(&list.list[i]);
         printf("\n");
     }
@@ -70,7 +70,7 @@ t_adjacent_list readGraph(const char *filename) {
     while (fscanf(file, "%d %d %f", &depart, &arrivee, &proba) == 3)
     {
         // on obtient, pour chaque ligne du fichier les valeurs depart, arrivee, et proba
-        add_cell(graph.list, arrivee, proba);
+        add_cell(&graph.list[depart-1], arrivee, proba);
     }
     fclose(file);
     return graph;
