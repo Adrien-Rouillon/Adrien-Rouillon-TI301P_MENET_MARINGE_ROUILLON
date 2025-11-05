@@ -1,3 +1,7 @@
+//
+// Created by Adrien on 22/10/2025.
+//
+
 #include "list.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -74,4 +78,32 @@ t_adjacent_list readGraph(const char *filename) {
     }
     fclose(file);
     return graph;
+}
+
+
+int is_markov_graph(const t_list *adj, int size) {
+    int isMarkov = 1;
+
+    for (int i = 0; i < size; i++) {
+        float sum = 0.00;
+        const t_cell *cell = adj[i].head;
+        while (cell) {
+            sum += cell->probability;
+            cell = cell->next;
+        }
+
+        if (sum < 0.99 || sum > 1.00) {
+            printf("La somme des probabilités du sommet %d est %.2f\n", i + 1, sum);
+            isMarkov = 0;
+        }
+    }
+
+    if (isMarkov) {
+        printf("Le graphe est un graphe de Markov\n");
+    }
+    else {
+        printf("Le graphe n’est pas un graphe de Markov\n");
+    }
+
+    return isMarkov;
 }
