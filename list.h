@@ -36,4 +36,4 @@ void display_adj_list(t_adjacent_list list);
 
 t_adjacent_list readGraph (const char *filename);
 
-int is_markov_graph(const t_list *adj, int size);
+int is_markov_graph(t_adjacent_list graph);

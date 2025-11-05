@@ -28,28 +28,29 @@ void add_cell(t_list *list, int summit , float probability){
 
 void display_list(t_list *list) {
     t_cell *cell = list->head;
-    printf("[head @] ->");
+    printf("[head @] -> ");
     while (cell != NULL) {
-        printf("(%d, %.2f) ", cell->summit, cell->probability);
+        printf("(%d, %.2f)", cell->summit, cell->probability);
+        if (cell->next != NULL) printf(" @-> ");
         cell = cell->next;
     }
 }
 
 t_adjacent_list create_adj_list(int size) {
-    t_adjacent_list list;
-    list.size = size;
-    list.list = malloc(sizeof(t_cell *) * size);
+    t_adjacent_list graph;
+    graph.size = size;
+    graph.list = malloc(sizeof(t_cell *) * size);
     for (int i = 0; i < size; i++) {
-        list.list[i] = create_empty_list();
+        graph.list[i] = create_empty_list();
     }
-    return list;
+    return graph;
 }
 
-void display_adj_list(t_adjacent_list list) {
-    if (list.size == 0) return;
-    for (int i = 0; i < list.size; i++) {
+void display_adj_list(t_adjacent_list graph) {
+    if (graph.size == 0) return;
+    for (int i = 0; i < graph.size; i++) {
         printf("Liste pour le sommet %d: ", i+1);
-        display_list(&list.list[i]);
+        display_list(&graph.list[i]);
         printf("\n");
     }
 }
@@ -81,29 +82,23 @@ t_adjacent_list readGraph(const char *filename) {
 }
 
 
-int is_markov_graph(const t_list *adj, int size) {
+int is_markov_graph(t_adjacent_list graph) {
     int isMarkov = 1;
 
-    for (int i = 0; i < size; i++) {
-        float sum = 0.00;
-        const t_cell *cell = adj[i].head;
+    for (int i = 0; i < graph.size; i++) {
+        float sum = 0;
+        const t_cell *cell = graph.list[i].head;
         while (cell) {
             sum += cell->probability;
             cell = cell->next;
         }
-
         if (sum < 0.99 || sum > 1.00) {
-            printf("La somme des probabilités du sommet %d est %.2f\n", i + 1, sum);
+            printf("La somme des probabilités du sommet %d est %f\n", i + 1, sum);
             isMarkov = 0;
         }
     }
-
-    if (isMarkov) {
-        printf("Le graphe est un graphe de Markov\n");
-    }
-    else {
-        printf("Le graphe n’est pas un graphe de Markov\n");
-    }
+    if (isMarkov) printf("Le graphe est un graphe de Markov\n");
+    else printf("Le graphe n’est pas un graphe de Markov\n");
 
     return isMarkov;
 }
