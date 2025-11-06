@@ -22,3 +22,13 @@ static char *getID(int i){
     return buffer;
 }
 
+t_diagram createDiagram(int size) {
+    t_diagram diagram;
+
+    diagram.layout = "elk";
+    diagram.theme = "neo";
+    diagram.look = "neo";
+    diagram.adj_list = create_adj_list(size);
+
+    return diagram;
+}

@@ -7,13 +7,12 @@ typedef struct s_diagram {
     char * layout;
     char * theme;
     char * look;
-    int size;
-    t_cell * cell;
+    t_adjacent_list adj_list;
 } t_diagram;
 
 static char *getID(int i);
 
-t_diagram create_diagram(int size);
+t_diagram createDiagram(int size);
 
 void write_diagram(t_diagram diagram);
 
