@@ -56,7 +56,7 @@ void display_adj_list(t_adjacent_list graph) {
 }
 
 t_adjacent_list readGraph(const char *filename) {
-    FILE *file = fopen(filename, "r t"); // read-only, text
+    FILE *file = fopen(filename, "rt"); // read-only, text
     int nbvert, depart, arrivee;
     float proba;
     t_adjacent_list graph;

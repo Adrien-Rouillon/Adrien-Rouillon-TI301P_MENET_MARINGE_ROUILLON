@@ -13,4 +13,8 @@ typedef struct s_diagram {
 
 static char *getID(int i);
 
+t_diagram create_diagram(int size);
+
+void write_diagram(t_diagram diagram);
+
 #endif
