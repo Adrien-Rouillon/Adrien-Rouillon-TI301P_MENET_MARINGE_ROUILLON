@@ -22,13 +22,13 @@ static char *getID(int i){
     return buffer;
 }
 
-t_diagram createDiagram(int size) {
+t_diagram createDiagram(const char *filename) {
     t_diagram diagram;
 
     diagram.layout = "elk";
     diagram.theme = "neo";
     diagram.look = "neo";
-    diagram.adj_list = create_adj_list(size);
+    diagram.adj_list = readGraph(filename);
 
     return diagram;
 }

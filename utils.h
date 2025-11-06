@@ -12,7 +12,7 @@ typedef struct s_diagram {
 
 static char *getID(int i);
 
-t_diagram createDiagram(int size);
+t_diagram createDiagram(const char *filename);
 
 void write_diagram(t_diagram diagram);
 
