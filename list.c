@@ -56,7 +56,7 @@ void display_adj_list(t_adjacent_list graph) {
 }
 
 t_adjacent_list readGraph(const char *filename) {
-    FILE *file = fopen(filename, "rt"); // read-only, text
+    FILE *file = fopen(filename, "r t"); // read-only, text
     int nbvert, depart, arrivee;
     float proba;
     t_adjacent_list graph;
@@ -65,7 +65,6 @@ t_adjacent_list readGraph(const char *filename) {
         perror("Could not open file for reading");
         exit(EXIT_FAILURE);
     }
-    // first line contains number of vertices
     if (fscanf(file, "%d", &nbvert) != 1)
     {
         perror("Could not read number of vertices");
@@ -74,13 +73,11 @@ t_adjacent_list readGraph(const char *filename) {
     graph = create_adj_list(nbvert);
     while (fscanf(file, "%d %d %f", &depart, &arrivee, &proba) == 3)
     {
-        // on obtient, pour chaque ligne du fichier les valeurs depart, arrivee, et proba
         add_cell(&graph.list[depart-1], arrivee, proba);
     }
     fclose(file);
     return graph;
 }
-
 
 int is_markov_graph(t_adjacent_list graph) {
     int isMarkov = 1;
