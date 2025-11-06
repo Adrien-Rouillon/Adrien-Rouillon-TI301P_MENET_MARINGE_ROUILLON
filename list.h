@@ -1,11 +1,5 @@
-//
-// Created by Adrien on 22/10/2025.
-//
-
 #ifndef LIST_H
 #define LIST_H
-
-#endif //LIST_H
 
 typedef struct s_cell {
     int summit;
@@ -37,3 +31,5 @@ void display_adj_list(t_adjacent_list list);
 t_adjacent_list readGraph (const char *filename);
 
 int is_markov_graph(t_adjacent_list graph);
+
+#endif //LIST_H

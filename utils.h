@@ -10,10 +10,10 @@ typedef struct s_diagram {
     t_adjacent_list adj_list;
 } t_diagram;
 
-static char *getID(int i);
+char *getID(int i);
 
 t_diagram createDiagram(const char *filename);
 
-void write_diagram(t_diagram diagram);
+void writeDiagram(t_diagram diagram, char * filename);
 
 #endif
