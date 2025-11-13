@@ -3,5 +3,6 @@
 //
 
 #include "Tarjan.h"
+#include "utils.h"
 
-int tarjan
+t_tarjan_list listAdj_to_Tarjan(t_adjacent_list graph){}
