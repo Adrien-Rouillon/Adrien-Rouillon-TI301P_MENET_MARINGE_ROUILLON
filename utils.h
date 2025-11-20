@@ -11,10 +11,17 @@ typedef struct s_list{
     t_cell *head;
 } t_list;
 
-typedef struct s_adjacent_list {
+typedef struct s_adjList {
     int size;
     t_list *list;
-} t_adjacent_list;
+} t_adjList;
+
+typedef struct s_diagram {
+    char * layout;
+    char * theme;
+    char * look;
+    t_adjList adj_list;
+} t_diagram;
 
 t_cell *create_cell(int summit, float probability);
 
@@ -24,20 +31,13 @@ void add_cell(t_list *mylist, int summit , float probability);
 
 void display_list(t_list *list);
 
-t_adjacent_list create_adj_list(int size);
+t_adjList create_adj_list(int size);
 
-void display_adj_list(t_adjacent_list list);
+void display_adj_list(t_adjList list);
 
-t_adjacent_list readGraph (const char *filename);
+t_adjList readGraph (const char *filename);
 
-int is_markov_graph(t_adjacent_list graph);
-
-typedef struct s_diagram {
-    char * layout;
-    char * theme;
-    char * look;
-    t_adjacent_list adj_list;
-} t_diagram;
+int is_markov_graph(t_adjList graph);
 
 char *getID(int i);
 

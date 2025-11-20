@@ -33,8 +33,8 @@ void display_list(t_list *list) {
     }
 }
 
-t_adjacent_list create_adj_list(int size) {
-    t_adjacent_list graph;
+t_adjList create_adj_list(int size) {
+    t_adjList graph;
     graph.size = size;
     graph.list = malloc(sizeof(t_cell *) * size);
     for (int i = 0; i < size; i++) {
@@ -43,7 +43,7 @@ t_adjacent_list create_adj_list(int size) {
     return graph;
 }
 
-void display_adj_list(t_adjacent_list graph) {
+void display_adj_list(t_adjList graph) {
     if (graph.size == 0) return;
     for (int i = 0; i < graph.size; i++) {
         printf("Liste pour le sommet %d: ", i+1);
@@ -52,11 +52,11 @@ void display_adj_list(t_adjacent_list graph) {
     }
 }
 
-t_adjacent_list readGraph(const char *filename) {
+t_adjList readGraph(const char *filename) {
     FILE *file = fopen(filename, "rt"); // read-only, text
     int nbvert, depart, arrivee;
     float proba;
-    t_adjacent_list graph;
+    t_adjList graph;
     if (file==NULL)
     {
         perror("Could not open file for reading");
@@ -76,7 +76,7 @@ t_adjacent_list readGraph(const char *filename) {
     return graph;
 }
 
-int is_markov_graph(t_adjacent_list graph) {
+int is_markov_graph(t_adjList graph) {
     int isMarkov = 1;
 
     for (int i = 0; i < graph.size; i++) {
