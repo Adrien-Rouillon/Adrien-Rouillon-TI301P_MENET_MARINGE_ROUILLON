@@ -1,7 +1,7 @@
 #ifndef INC_2526_TI301_PJT_TARJAN_H
 #define INC_2526_TI301_PJT_TARJAN_H
 typedef struct s_tarjanVtx { //Vertex
-  int id; //indentifiant du sommet dans le graphe
+  int id; //identifiant du sommet dans le graphe
   int temp_num; //ordre de découverte
   int access_num; //regrouper les sommets qui communiquent
   int indic; //1 si le sommet est dans la pile, 0 sinon
@@ -14,7 +14,7 @@ typedef struct s_tarjanVtl { //Verticles
 
 typedef struct s_class {
   char *name;
-  int *id_summit; //indentifiant du sommet dans la classe
+  int *id_summit; //identifiant du sommet dans la classe
   int size;
 } t_class;
 
@@ -26,6 +26,6 @@ typedef struct s_partition {
 typedef struct s_pile {
   int *elements;
   int size;
-};
+}t_pile;
 
 #endif //INC_2526_TI301_PJT_TARJAN_H

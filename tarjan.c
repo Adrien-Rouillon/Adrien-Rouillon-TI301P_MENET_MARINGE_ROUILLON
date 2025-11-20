@@ -15,7 +15,7 @@ void add_tarjan(t_tarjanVtl *list, int id, int num, int num_access, int indic) {
 
 }
 
-t_tarjanVtl listAdj_to_Tarjan(t_adjacent_list graph) {
+t_tarjanVtx *listAdj_to_Tarjan(t_adjacent_list graph) {
     if (graph.size <= 0) perror("ERROR: listAdj_to_Tarjan");
     t_tarjanVtx * list = malloc(sizeof(t_tarjanVtx)*(graph.size));
     for (int i = 0; i < graph.size; i++) {
@@ -24,8 +24,14 @@ t_tarjanVtl listAdj_to_Tarjan(t_adjacent_list graph) {
         list[i].access_num = -1;
         list[i].indic = 0;
     }
-    t_tarjanVtl res;
-    res.size = graph.size;
-    res.summit = list;
-    return res;
+    return list;
+}
+
+void stack_pile(t_pile *pile, int val) {
+    pile->elements[pile->size] = val;
+    pile->size++;
+}
+
+void tarjan_parcours(t_adjacent_list graph, t_tarjanVtx *list, t_pile *pile, t_partition *part, int *count) {
+
 }
