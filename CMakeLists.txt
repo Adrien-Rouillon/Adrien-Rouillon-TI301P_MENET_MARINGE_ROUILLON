@@ -7,6 +7,6 @@ add_executable(TI_301_PJT
         main.c
         utils.c
         hasse.c
-        Tarjan.c
-        Tarjan.h)
+        tarjan.c
+        matrix.c)
 
