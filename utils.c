@@ -91,7 +91,7 @@ int is_markov_graph(t_adjList graph) {
             isMarkov = 0;
         }
     }
-    if (isMarkov) printf("Le graphe est un graphe de     Markov\n");
+    if (isMarkov) printf("Le graphe est un graphe de Markov\n");
     else printf("Le graphe n’est pas un graphe de Markov\n");
 
     return isMarkov;
