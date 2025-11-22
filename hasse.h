@@ -12,23 +12,6 @@ void removeTransitiveLinks(t_link_array *p_link_array);
  * @return The created link array.
  */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 typedef struct lien{
 	int start;
     int arive;

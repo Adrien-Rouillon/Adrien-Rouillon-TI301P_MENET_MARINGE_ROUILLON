@@ -91,7 +91,7 @@ int is_markov_graph(t_adjList graph) {
             isMarkov = 0;
         }
     }
-    if (isMarkov) printf("Le graphe est un graphe de Markov\n");
+    if (isMarkov) printf("Le graphe est un graphe de     Markov\n");
     else printf("Le graphe n’est pas un graphe de Markov\n");
 
     return isMarkov;
@@ -114,7 +114,7 @@ char *getID(int i){
     buffer[index] = '\0';
     return buffer;
 }
-
+//crée un Diagramme
 t_diagram createDiagram(const char *filename) {
     t_diagram diagram;
 
@@ -125,26 +125,29 @@ t_diagram createDiagram(const char *filename) {
 
     return diagram;
 }
-
+//verifie si il est vide et ecrit le diagramme
 void writeDiagram(t_diagram diag, char *filename) {
     FILE *file = fopen(filename, "w");
     if (file == NULL) {
         perror("Could not open file for writing");
         exit(EXIT_FAILURE);
     }
+    //Ecrit l'en tête du diagramme
     fprintf(file, "---\nconfig:\n");
     fprintf(file, "layout: %s\ntheme: %s\nlook: %s\n---\n\n", diag.layout, diag.theme, diag.look);
     fprintf(file, "flowchart LR\n");
     char *id, *nextId;
+    // Ecrit les noeuds du graphe
     for (int i = 0; i < diag.adj_list.size; i++) {
         id = getID(i+1);
         fprintf(file, "%s((%d))\n", id, i+1);
     }
     fprintf(file, "\n");
+    //parcours les liste d'adjacence
     for (int i = 0; i < diag.adj_list.size; i++) {
         t_cell *cell = diag.adj_list.list[i].head;
         id = getID(i+1);
-        while (cell) {
+        while (cell) {// parcours les sommet voisins
             nextId = getID(cell->summit);
             fprintf(file, "%s -->|%.2f|%s\n", id, cell->probability, nextId);
             cell = cell->next;
