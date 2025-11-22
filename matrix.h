@@ -1,7 +1,3 @@
-//
-// Created by alexa on 22/11/2025.
-//
-
 #ifndef INC_2526_TI301_PJT_MATRIX_H
 #define INC_2526_TI301_PJT_MATRIX_H
 #include "utils.h"
