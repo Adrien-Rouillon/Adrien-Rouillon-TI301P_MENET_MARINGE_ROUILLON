@@ -152,6 +152,7 @@ void writeDiagram(t_diagram diag, char *filename) {
             fprintf(file, "%s -->|%.2f|%s\n", id, cell->probability, nextId);
             cell = cell->next;
         }
+        free(id);
     }
     fclose(file);
 }

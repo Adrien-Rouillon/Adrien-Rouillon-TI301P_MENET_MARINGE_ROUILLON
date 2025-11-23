@@ -1,15 +1,17 @@
 #ifndef __HASSE_H__
 #define __HASSE_H__
-
+#include "tarjan.h"
 /*
+struct t_link_array;
+void removeTransitiveLinks(t_link_array *p_link_array);
+
+
  * @brief Creates a link array from the given partition and graph.
  *
  * @param part The partition of the graph.
  * @param graph The adjacency list representation of the graph.
  * @return The created link array.
-*/
-
-#include "tarjan.h"
+ */
 
 typedef struct lien{
 	int start;
@@ -26,7 +28,7 @@ typedef struct classify{
 	int sommet;
     int classe;
 }classify;
-struct t_link_array;
+
 void removeTransitiveLinks(liens *container);
 void initialize_link(liens *container);
 void resize_link(liens *container);

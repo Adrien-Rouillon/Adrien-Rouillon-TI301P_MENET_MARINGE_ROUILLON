@@ -53,7 +53,7 @@ t_matrix adj_list_to_matrix(t_adjList graph) {
 // copier une matrice
 void copy_matrix(t_matrix destination, t_matrix source) {
     if (destination.rows != source.rows || destination.cols != source.cols) {
-        printf("Erreur : les dimmensions sont incompatibles pour la copie\n");
+        printf("Erreur : les dimensions sont incompatibles pour la copie\n");
         return;
     }
     for (int i = 0; i < source.rows; i++) {

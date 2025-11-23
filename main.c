@@ -4,7 +4,7 @@
 #include "hasse.h"
 #include "matrix.h"
 
-
+//Fonction pour vérifier Partie 1 étape 1-2 pour afficher la liste adjacente et vérifier si c'est un graphe de Markov.
 void testMarkov(){
     t_adjList graph = readGraph("../data/exemple1.txt");
     display_adj_list(graph);
@@ -12,18 +12,20 @@ void testMarkov(){
     is_markov_graph(graph);
 }
 
+//Fonction pour vérifier Partie 1 étape 3 pour convertir la liste adjacente en fichier .mmd.
 void testConvertisseurMermaidChart(){
     t_diagram diag = createDiagram("../data/exemple1_from_chatGPT.txt");
     writeDiagram(diag, "../data/exemple2_chatGPT_fixed.mmd");
 }
 
-// test de Tarjan
+//Fonction pour vérifier Partie 2 étape 1 sur l'algorithme de Tarjan
 void testTarjan(){
     t_adjList graph = readGraph("../data/exemple2.txt");
     t_partition part = tarjan(graph);
     print_partition(part);
 }
 
+//Fonction pour vérifier Partie 2 étape 2 sur le diagramme de Hasse.
 void TestHasse() {
     t_adjList graph = readGraph("../data/exemple3.txt");
     t_partition part = tarjan(graph);
@@ -31,7 +33,9 @@ void TestHasse() {
     print_diagramme_hasse(hasse, part);
     free_link(&hasse);
 }
-void testcharacteristic() {
+
+//Fonction pour vérifier Partie 2 étape 3 sur les caractéristiques des graphes.
+void testCharacteristic() {
     t_adjList graph = readGraph("../data/exemple_valid_step3");
     t_partition part = tarjan(graph);
     liens hasse = create_diagram_hasse(graph, part);
@@ -40,10 +44,10 @@ void testcharacteristic() {
     free_link(&hasse);
 }
 
-// test de matrice
-void testMatrix() {
+//Fonction pour vérifier Partie 3 étape 1 sur convertir une liste adjacente en matrice.
+void testMatrixCalc() {
     // test pour charger et convertir une matrice M
-    t_adjList graph = readGraph("../data/exemple1.txt"); // Ou exemple1.txt
+    t_adjList graph = readGraph("../test_bench/exemple_meteo.txt"); // Ou exemple1.txt
     t_matrix M = adj_list_to_matrix(graph);
     printf("Matrice d'adjacence (M) :\n");
     print_matrix(M);
@@ -69,7 +73,7 @@ void testMatrix() {
 
 void testPartie3() {
     // étape 1
-    t_adjList graph = readGraph("../data/exemple_meteo.txt");
+    t_adjList graph = readGraph("../test_bench/exemple_meteo.txt");
     t_matrix M = adj_list_to_matrix(graph);
     // M_pow qui accumule les multiplications
     t_matrix M_pow = create_empty_matrix(M.rows);
@@ -132,7 +136,6 @@ void testPartie3() {
 }
 
 int main() {
-    testMatrix();
+    testPartie3();
     return 0;
 }
-
