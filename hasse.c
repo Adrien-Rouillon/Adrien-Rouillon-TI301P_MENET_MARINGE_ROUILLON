@@ -3,16 +3,16 @@
 #include <stdio.h>
 #include "hasse.h"
 #include "tarjan.h"
+#include "utils.h"
 #define TAILLE_INITIALE 10
 
 //Supprime les liens transitifs du diagramme de Hasse
 void removeTransitiveLinks(liens *container)
 {
     int i = 0;
-    // Parcourt tous les liens pour vérifier s'ils sont transitifs
     while (i < container->nb_liens)
     {
-        lien link1 = container->liens[i]; // Lien potentiellement transitif (C1->C3)
+        lien link1 = container->liens[i];
         int j = 0;
         int to_remove = 0;
 
@@ -185,29 +185,36 @@ void free_link(liens *container) {
 }
 void characteristic(liens container,t_partition part){
   int *has_outgoing_link = (int*)calloc(part.size, sizeof(int));
-  int class_start_id = container.liens[container.nb_liens].start;
-  int class_arrive_id = container.liens[container.nb_liens].arrive;
+  for (int i = 0; i < container.nb_liens; i++) {
+        int classe_depart_id = container.liens[i].start;
+        int classe_arrivee_id = container.liens[i].arrive;
+
+        if (classe_depart_id != classe_arrivee_id) {
+             has_outgoing_link[classe_depart_id] = 1;
+        }
+  }
   for(int i = 0; i< part.size;i++){
     printf("classe %s : {",part.classes[i].name);
     for (int j = 0; j < part.classes[i].size; j++) {
     	printf("%d%s", part.classes[i].id_summit[j],(j< part.classes[i].size-1)? ", " : "");
-        if (has_outgoing_link[i] == 1) {
-            printf("**TRANSIOIRE**\n");
-        } else {
-            printf("**PERSISTANTE**\n");
-        }
-        if ( part.classes[i].size == 1){
-          printf("%d est **Absorbant**\n",part.classes[i].id_summit[0]);
-        }
-        if(part.size ==1){
-          printf("Le graphe est **IREDUCTIBLE**");
-        }else{
-          printf("Le graphe n'est pas **IREEDUCTIBLE**");
+	}
+  	printf("}");
+  	if (has_outgoing_link[i] == 1) {
+    		printf("**TRANSIOIRE**\n");
+  	} else {
+  		printf("**PERSISTANTE**\n");
+  	}
+ 	if ( part.classes[i].size == 1){
+  		printf("%d est **Absorbant**\n",part.classes[i].id_summit[0]);
+  	}
 
-        }
-    }
-    printf("}\n");
   }
+  if(part.size ==1){
+    printf("Le graphe est **IREDUCTIBLE**");
+  }else{
+  	printf("Le graphe n'est pas **IREEDUCTIBLE**");
+  }
+  printf("}\n");
   free(has_outgoing_link);
 }
 
