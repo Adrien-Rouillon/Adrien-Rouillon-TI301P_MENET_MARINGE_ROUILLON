@@ -1,30 +1,33 @@
 #include <malloc.h>
 #include "hasse.h"
 #define TAILLE_INITIALE 10
-/*
-void removeTransitiveLinks(t_link_array *p_link_array)
+
+void removeTransitiveLinks(liens *container)
 {
     int i = 0;
-    while (i < p_link_array->log_size)
+    while (i < container->nb_liens)
     {
-        t_link link1 = p_link_array->links[i];
+        lien link1 = container->liens[i];
         int j = 0;
         int to_remove = 0;
-        while (j < p_link_array->log_size && !to_remove)
+        while (j < container->nb_liens && !to_remove)
         {
             if (j != i)
             {
-                t_link link2 = p_link_array->links[j];
-                if (link1.from == link2.from)
+                lien link2 = container->liens[j];
+
+
+                if (link1.start == link2.start)
                 {
-                    // look for a link from link2.to link1.to
+
                     int k = 0;
-                    while (k < p_link_array->log_size && !to_remove)
+                    while (k < container->nb_liens && !to_remove)
                     {
                         if (k != j && k != i)
                         {
-                            t_link link3 = p_link_array->links[k];
-                            if ((link3.from == link2.to) && (link3.to == link1.to))
+                            lien link3 = container->liens[k];
+
+                            if ((link3.start == link2.arive) && (link3.arive == link1.arive))
                             {
                                 to_remove = 1;
                             }
@@ -35,11 +38,13 @@ void removeTransitiveLinks(t_link_array *p_link_array)
             }
             j++;
         }
+
         if (to_remove)
         {
-            // remove link1 by replacing it with the last link
-            p_link_array->links[i] = p_link_array->links[p_link_array->log_size - 1];
-            p_link_array->log_size--;
+            // Remplacement par le dernier élément du tableau
+            container->liens[i] = container->liens[container->nb_liens - 1];
+            container->nb_liens--;
+            // On n'incrémente pas i car on doit tester le lien qu'on vient de déplacer ici
         }
         else
         {
@@ -48,7 +53,6 @@ void removeTransitiveLinks(t_link_array *p_link_array)
     }
 }
 
-*/
 
 
 
