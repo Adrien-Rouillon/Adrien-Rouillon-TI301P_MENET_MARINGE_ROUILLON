@@ -1,5 +1,5 @@
 # Projet : Analyse de Graphes de Markov
-## Contributeurs: Alexis MARIGNE, Alexandre MENET, Adrien ROUILLON
+## Contributeurs: Alexis MARINGE, Alexandre MENET, Adrien ROUILLON
 
 Le projet en C consiste à traiter et analyser des chaînes de Markov. Nous pouvons charger des graphes, vérifier leurs probabilités, les visualiser via le site Mermaid, et analyser leurs connexions grâce à Tarjan, ainsi que leurs matrices de transition.
 
