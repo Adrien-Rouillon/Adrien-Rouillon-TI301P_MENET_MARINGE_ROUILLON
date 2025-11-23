@@ -30,6 +30,14 @@ void TestHasse() {
     print_diagramme_hasse(hasse, part);
     free_link(&hasse);
 }
+void testcharacteristic() {
+    t_adjList graph = readGraph("../data/exemple3.txt");
+    t_partition part = tarjan(graph);
+    liens hasse = create_diagram_hasse(graph, part);
+    characteristic(hasse,part);
+    print_diagramme_hasse(hasse, part);
+    free_link(&hasse);
+}
 
 // test de matrice
 void testMatrix() {
