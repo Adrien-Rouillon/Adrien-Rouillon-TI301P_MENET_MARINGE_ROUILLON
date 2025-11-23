@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "utils.h"
 #include "tarjan.h"
+#include "hasse.h"
 
 
 void testMarkov(){
@@ -20,6 +21,16 @@ void testTarjan(){
     t_partition part = tarjan(graph);
     print_partition(part);
 }
+void TestHasse() {
+    t_adjList graph = readGraph("../data/exemple3.txt");
+    t_partition part = tarjan(graph);
+    liens hasse = creer_diagramme_hasse(graph, part);
+    afficher_diagramme_hasse(hasse, part);
+    liberer_liens(&hasse);
+}
+
+
+
 
 int main() {
     testTarjan();

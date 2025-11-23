@@ -183,3 +183,5 @@ void liberer_liens(liens *container) {
     container->nb_liens = 0;
     container->capacite = 0;
 }
+void caracteristique(liens containers,t_partition part){
+}

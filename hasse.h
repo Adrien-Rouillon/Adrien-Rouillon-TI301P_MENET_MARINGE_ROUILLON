@@ -34,7 +34,9 @@ int get_classe(int id_sommet, classify tableau_classif[], int nb_sommets_total);
 int lien_existe(int c_dep, int c_arr, liens *container);
 void ajouter_lien(int c_dep, int c_arr, liens *container);
 void stck_le_lien(int n, struct classify *C);
-
-int lien_existe(int c_dep, int c_arr, liens *container);
-void ajouter_lien(int c_dep, int c_arr, liens *container);
+liens creer_diagramme_hasse(t_adjList graph, t_partition part);
+int trouver_classe_du_sommet(t_partition part, int summit_id);
+void afficher_diagramme_hasse(liens container, t_partition part);
+void liberer_liens(liens *container);
+void caracteristique(liens containers,t_partition part)
 #endif
