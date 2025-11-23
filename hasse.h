@@ -28,15 +28,13 @@ typedef struct classify{
     int classe;
 }classify;
 
-void initialiser_liens(liens *container);
-void redimensionner_liens(liens *container);
-int get_classe(int id_sommet, classify tableau_classif[], int nb_sommets_total);
-int lien_existe(int c_dep, int c_arr, liens *container);
-void ajouter_lien(int c_dep, int c_arr, liens *container);
-void stck_le_lien(int n, struct classify *C);
-liens creer_diagramme_hasse(t_adjList graph, t_partition part);
-int trouver_classe_du_sommet(t_partition part, int summit_id);
-void afficher_diagramme_hasse(liens container, t_partition part);
-void liberer_liens(liens *container);
-void caracteristique(liens containers,t_partition part)
+void initialize_link(liens *container);
+void resize_link(liens *container);
+int existing_link(int c_dep, int c_arr, liens *container);
+void add_link(int c_dep, int c_arr, liens *container);
+liens create_diagram_hasse(t_adjList graph, t_partition part);
+int find_class_vertex(t_partition part, int summit_id);
+void print_diagramme_hasse(liens container, t_partition part);
+void free_link(liens *container);
+void characteristic(liens containers,t_partition part);
 #endif

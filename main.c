@@ -24,9 +24,9 @@ void testTarjan(){
 void TestHasse() {
     t_adjList graph = readGraph("../data/exemple3.txt");
     t_partition part = tarjan(graph);
-    liens hasse = creer_diagramme_hasse(graph, part);
-    afficher_diagramme_hasse(hasse, part);
-    liberer_liens(&hasse);
+    liens hasse = create_diagram_hasse(graph, part);
+    print_diagramme_hasse(hasse, part);
+    free_link(&hasse);
 }
 
 

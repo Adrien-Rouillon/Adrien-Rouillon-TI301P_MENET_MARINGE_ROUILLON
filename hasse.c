@@ -57,7 +57,7 @@ void removeTransitiveLinks(liens *container)
     }
 }
 //Initialise le conteneur de liens avec une capacité initiale
-void initialiser_liens(liens *container) {
+void initialize_link(liens *container) {
     // Allocation dynamique du tableau de liens
     container->liens = (lien*)malloc(TAILLE_INITIALE * sizeof(lien));
     if (container->liens == NULL) {
@@ -69,7 +69,7 @@ void initialiser_liens(liens *container) {
 }
 
 //Double la capacité du conteneur lorsqu'il est plein
-void redimensionner_liens(liens *container) {
+void resize_link(liens *container) {
     container->capacite *= 2;
 
     // Réallouer le tableau avec la nouvelle taille
@@ -80,7 +80,7 @@ void redimensionner_liens(liens *container) {
     }
 }
 //Trouve l'index de la classe contenant un sommet donné
-int trouver_classe_du_sommet(t_partition part, int summit_id) {
+int find_class_vertex(t_partition part, int summit_id) {
     // Parcourt toutes les classes de la partition
     for (int i = 0; i < part.size; i++) {
         for (int j = 0; j < part.classes[i].size; j++) {
@@ -92,7 +92,7 @@ int trouver_classe_du_sommet(t_partition part, int summit_id) {
     return -1;
 }
 //Vérifie si un lien entre deux classes existe déjà dans le conteneur
-int lien_existe(int c_dep, int c_arr, liens *container) {
+int existing_link(int c_dep, int c_arr, liens *container) {
     // Parcourt tous les liens existants
     for (int k = 0; k < container->nb_liens; k++) {
         if (container->liens[k].start == c_dep && container->liens[k].arrive == c_arr) {
@@ -102,10 +102,10 @@ int lien_existe(int c_dep, int c_arr, liens *container) {
     return 0; // Le lien n'existe pas encore
 }
 //Ajoute un nouveau lien entre deux classes dans le conteneur
-void ajouter_lien(int c_dep, int c_arr, liens *container) {
+void add_link(int c_dep, int c_arr, liens *container) {
 
     if (container->nb_liens >= container->capacite) {
-        redimensionner_liens(container);
+        resize_link(container);
     }
 
     // Ajouter le nouveau lien à la fin du tableau
@@ -114,14 +114,14 @@ void ajouter_lien(int c_dep, int c_arr, liens *container) {
     container->nb_liens++;
 }
 //Crée le diagramme de Hasse à partir du graphe et de sa partition
-liens creer_diagramme_hasse(t_adjList graph, t_partition part) {
+liens create_diagram_hasse(t_adjList graph, t_partition part) {
     liens container;
-    initialiser_liens(&container); // Initialiser le conteneur de liens
+    initialize_link(&container); // Initialiser le conteneur de liens
 
     // Parcourir tous les sommets du graphe original
     for (int i = 0; i < graph.size; i++) {
 
-        int classe_depart = trouver_classe_du_sommet(part, i + 1);
+        int classe_depart = find_class_vertex(part, i + 1);
 
         if (classe_depart == -1) continue;
 
@@ -129,7 +129,7 @@ liens creer_diagramme_hasse(t_adjList graph, t_partition part) {
         t_cell *cell = graph.list[i].head;
         while (cell) {
 
-            int classe_arrivee = trouver_classe_du_sommet(part, cell->summit + 1);
+            int classe_arrivee = find_class_vertex(part, cell->summit + 1);
 
             if (classe_arrivee == -1) {
                 cell = cell->next;
@@ -139,8 +139,8 @@ liens creer_diagramme_hasse(t_adjList graph, t_partition part) {
             // Si les deux sommets sont dans des classes DIFFÉRENTES
             if (classe_depart != classe_arrivee) {
 
-                if (!lien_existe(classe_depart, classe_arrivee, &container)) {
-                    ajouter_lien(classe_depart, classe_arrivee, &container);
+                if (!existing_link(classe_depart, classe_arrivee, &container)) {
+                    add_link(classe_depart, classe_arrivee, &container);
                 }
             }
 
@@ -177,11 +177,11 @@ void afficher_diagramme_hasse(liens container, t_partition part) {
                part.classes[container.liens[i].arrive].name);
     }
 }
-void liberer_liens(liens *container) {
+void free_link(liens *container) {
     free(container->liens);
     container->liens = NULL;
     container->nb_liens = 0;
     container->capacite = 0;
 }
-void caracteristique(liens containers,t_partition part){
+void characteristic(liens containers,t_partition part){
 }
