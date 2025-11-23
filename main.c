@@ -23,6 +23,7 @@ void testTarjan(){
     t_partition part = tarjan(graph);
     print_partition(part);
 }
+
 void TestHasse() {
     t_adjList graph = readGraph("../data/exemple3.txt");
     t_partition part = tarjan(graph);
@@ -31,7 +32,7 @@ void TestHasse() {
     free_link(&hasse);
 }
 void testcharacteristic() {
-    t_adjList graph = readGraph("../data/exemple3.txt");
+    t_adjList graph = readGraph("../data/exemple_valid_step3");
     t_partition part = tarjan(graph);
     liens hasse = create_diagram_hasse(graph, part);
     characteristic(hasse,part);
@@ -131,7 +132,7 @@ void testPartie3() {
 }
 
 int main() {
-    testPartie3();
+    testMatrix();
     return 0;
 }
 
