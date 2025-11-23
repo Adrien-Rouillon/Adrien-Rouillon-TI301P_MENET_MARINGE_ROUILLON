@@ -12,6 +12,8 @@ void removeTransitiveLinks(t_link_array *p_link_array);
  * @return The created link array.
  */
 
+#include "tarjan.h"
+
 typedef struct lien{
 	int start;
     int arrive;

@@ -11,7 +11,7 @@ typedef struct s_matrix {
 
 t_matrix create_matrix(int rows, int cols);
 void free_matrix(t_matrix matrix);
-void display_matrix(t_matrix matrix);
+void print_matrix(t_matrix matrix);
 
 t_matrix adj_list_to_matrix(t_adjList graph);
 t_matrix create_empty_matrix(int n);
