@@ -1,16 +1,13 @@
 #ifndef __HASSE_H__
 #define __HASSE_H__
+
 /*
-struct t_link_array;
-void removeTransitiveLinks(t_link_array *p_link_array);
-
-
  * @brief Creates a link array from the given partition and graph.
  *
  * @param part The partition of the graph.
  * @param graph The adjacency list representation of the graph.
  * @return The created link array.
- */
+*/
 
 typedef struct lien{
 	int start;
@@ -27,7 +24,8 @@ typedef struct classify{
 	int sommet;
     int classe;
 }classify;
-
+struct t_link_array;
+void removeTransitiveLinks(liens *container);
 void initialize_link(liens *container);
 void resize_link(liens *container);
 int existing_link(int c_dep, int c_arr, liens *container);
@@ -36,5 +34,5 @@ liens create_diagram_hasse(t_adjList graph, t_partition part);
 int find_class_vertex(t_partition part, int summit_id);
 void print_diagramme_hasse(liens container, t_partition part);
 void free_link(liens *container);
-void characteristic(liens containers,t_partition part);
+void characteristic(liens container,t_partition part);
 #endif

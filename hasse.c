@@ -152,9 +152,9 @@ liens create_diagram_hasse(t_adjList graph, t_partition part) {
 }
 
 //Affiche le diagramme de Hasse de manière lisible
-void afficher_diagramme_hasse(liens container, t_partition part) {
-    printf("\n=== Diagramme de Hasse ===\n");
-    printf("Nombre de liens entre classes : %d\n\n", container.nb_liens);
+void print_diagramme_hasse(liens container, t_partition part) {
+    printf("Diagramme de Hasse\n");
+    printf("Nombre de liens entre classes : %d\n", container.nb_liens);
 
     // Afficher les classes avec leurs sommets
     printf("Classes :\n");
@@ -183,5 +183,31 @@ void free_link(liens *container) {
     container->nb_liens = 0;
     container->capacite = 0;
 }
-void characteristic(liens containers,t_partition part){
+void characteristic(liens container,t_partition part){
+  int *has_outgoing_link = (int*)calloc(part.size, sizeof(int));
+  int class_start_id = container.liens[container.nb_liens].start;
+  int class_arrive_id = container.liens[container.nb_liens].arrive;
+  for(int i = 0; i< part.size;i++){
+    printf("classe %s : {",part.classes[i].name);
+    for (int j = 0; j < part.classes[i].size; j++) {
+    	printf("%d%s", part.classes[i].id_summit[j],(j< part.classes[i].size-1)? ", " : "");
+        if (has_outgoing_link[i] == 1) {
+            printf("**TRANSIOIRE**\n");
+        } else {
+            printf("**PERSISTANTE**\n");
+        }
+        if ( part.classes[i].size == 1){
+          printf("%d est **Absorbant**\n",part.classes[i].id_summit[0]);
+        }
+        if(part.size ==1){
+          printf("Le graphe est **IREDUCTIBLE**");
+        }else{
+          printf("Le graphe n'est pas **IREEDUCTIBLE**");
+
+        }
+    }
+    printf("}\n");
+  }
+  free(has_outgoing_link);
 }
+
