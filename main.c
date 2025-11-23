@@ -136,6 +136,6 @@ void testPartie3() {
 }
 
 int main() {
-    testPartie3();
+    testMarkov();
     return 0;
 }
