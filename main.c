@@ -10,8 +10,8 @@ void testMarkov(){
     is_markov_graph(graph);
 }
 
-void testConvertisseur(){
-    t_diagram diag = createDiagram("../data/exemple2_chatGPT_fixed.txt");
+void testConvertisseurMermaidChart(){
+    t_diagram diag = createDiagram("../data/exemple1_from_chatGPT.txt");
     writeDiagram(diag, "../data/exemple2_chatGPT_fixed.mmd");
 }
 
@@ -22,7 +22,7 @@ void testTarjan(){
 }
 
 int main() {
-    testMarkov();
+    testTarjan();
     return 0;
 }
 

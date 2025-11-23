@@ -86,7 +86,7 @@ int get_classe(int id_sommet, classify tableau_classif[], int nb_sommets_total) 
 // Vérifie si le lien de classes (Ci, Cj) existe déjà dans le conteneur
 int lien_existe(int c_dep, int c_arr, liens *container) {
     for (int k = 0; k < container->nb_liens; k++) {
-        if (container->liens[k].start == c_dep && container->liens[k].arive == c_arr) {
+        if (container->liens[k].start == c_dep && container->liens[k].arrive == c_arr) {
             return 1; // Le lien existe
         }
     }
@@ -98,8 +98,7 @@ void ajouter_lien(int c_dep, int c_arr, liens *container) {
     if (container->nb_liens >= container->capacite) {
         redimensionner_liens(container);
     }
-
     container->liens[container->nb_liens].start = c_dep;
-    container->liens[container->nb_liens].arive = c_arr;
+    container->liens[container->nb_liens].arrive = c_arr;
     container->nb_liens++;
 }
