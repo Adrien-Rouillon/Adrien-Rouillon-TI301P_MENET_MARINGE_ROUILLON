@@ -15,7 +15,7 @@ void print_matrix(t_matrix matrix);
 
 t_matrix adj_list_to_matrix(t_adjList graph);
 t_matrix create_empty_matrix(int n);
-void copyMatrix(t_matrix destination, t_matrix source);
+void copy_matrix(t_matrix destination, t_matrix source);
 void multiply_matrix(t_matrix m1, t_matrix m2, t_matrix destination);
 float diff_matrix(t_matrix m1, t_matrix m2);
 

@@ -66,9 +66,72 @@ void testMatrix() {
     free_matrix(M2);
 }
 
+void testPartie3() {
+    // étape 1
+    t_adjList graph = readGraph("../data/exemple_meteo.txt");
+    t_matrix M = adj_list_to_matrix(graph);
+    // M_pow qui accumule les multiplications
+    t_matrix M_pow = create_empty_matrix(M.rows);
+    t_matrix M_temp = create_empty_matrix(M.rows);
+    copy_matrix(M_pow, M);
+
+    printf("Matrice M initiale :\n");
+    print_matrix(M);
+    // boucle pour calculer M^2 jusqu'à M^7
+    for (int i = 2; i <= 7; i++) {
+        multiply_matrix(M_pow, M, M_temp);
+        copy_matrix(M_pow, M_temp);
+
+        // affichage seulement si on est au jour 3 ou 7
+        if (i == 3 || i == 7) {
+            printf("\nMatrice M^%d (Jour %d)\n", i, i);
+            print_matrix(M_pow);
+        }
+    }
+    // calcul de la convergence M^n
+    int n = 7;
+    float diff = 1.0;
+    while (diff > 0.01 && n < 1000) {
+        copy_matrix(M_temp, M_pow);
+        multiply_matrix(M_temp, M, M_pow);
+        diff = diff_matrix(M_pow, M_temp);
+        n++;
+    }
+    printf("\nConvergence atteinte a n=%d (Etat Stable) :\n", n);
+    print_matrix(M_pow);
+
+    // étape 2
+    t_adjList graph2 = readGraph("../data/exemple2.txt");
+    t_matrix M2 = adj_list_to_matrix(graph2);
+    t_partition part = tarjan(graph2);
+
+    printf("\nDistributions par classes :\n");
+    for (int i = 0; i < part.size; i++) {
+        // isolation la classe et calcule de la convergence
+        t_matrix sub = subMatrix(M2, part, i);
+
+        // recréer des matrices locales
+        t_matrix sub_res = create_empty_matrix(sub.rows);
+        t_matrix sub_tmp = create_empty_matrix(sub.rows);
+        copy_matrix(sub_res, sub);
+
+        diff = 1.0;
+        while (diff > 0.01) {
+            copy_matrix(sub_tmp, sub_res);
+            multiply_matrix(sub_tmp, sub, sub_res);
+            diff = diff_matrix(sub_res, sub_tmp);
+        }
+        printf("Classe %s : \n", part.classes[i].name);
+        print_matrix(sub_res);
+
+        free_matrix(sub); free_matrix(sub_res); free_matrix(sub_tmp);
+    }
+    free_matrix(M); free_matrix(M2);
+    free_matrix(M_pow); free_matrix(M_temp);
+}
 
 int main() {
-    testMatrix();
+    testPartie3();
     return 0;
 }
 
